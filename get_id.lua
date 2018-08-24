@@ -1,7 +1,5 @@
 local request = require('http.request')
-local cjson = require(os.getenv('JSON')
-   and os.getenv('JSON'):match("%a+json")
-   or "cjson")
+local cjson = require('cjson')
 
 local mt = {__call = function(_, room, token)
    assert(room, "No room uri given")

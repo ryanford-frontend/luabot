@@ -6,7 +6,7 @@ env:
   - LUA="lua=5.2 --compat 5.1" JSON="lua-cjson 2.1.0"
   - LUA="lua=5.3 --compat 5.1" JSON="lua-cjson 2.1.0"
   - LUA="luajit=2.0" JSON="lua-cjson"
-  - LUA="luajit=2.1" JSON="dkjson"
+  - LUA="luajit=2.1" JSON="lua-cjson"
 
 before_install:
   - pip install hererocks
