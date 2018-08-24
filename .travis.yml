@@ -19,6 +19,7 @@ install:
   - luarocks install luacov-coveralls
   - luarocks install luacheck
   - luarocks install http
+  - luarocks install lua-cjson
 
 script:
   - luacheck --std max+busted *.lua spec
