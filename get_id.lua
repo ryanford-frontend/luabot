@@ -2,8 +2,8 @@ local request = require('http.request')
 local cjson = require('cjson')
 
 local mt = {__call = function(_, room, token)
-   assert(room, "No room uri given")
-   assert(token, "No token given")
+   assert(room, 'No room uri given')
+   assert(token, 'No token given')
 
    local uri = 'https://api.gitter.im/v1/rooms'
    local req_body = '{"uri":"' .. room ..'"}'
