@@ -3,8 +3,8 @@ sudo: false
 
 env:
   - LUA="lua=5.1"
-  - LUA="lua=5.2 --compat=5.1"
-  - LUA="lua=5.3 --compat=5.1"
+  - LUA="lua=5.2 --compat 5.1"
+  - LUA="lua=5.3 --compat 5.1"
   - LUA="luajit=2.0"
   - LUA="luajit=2.1"
 
