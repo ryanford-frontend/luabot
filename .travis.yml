@@ -18,6 +18,7 @@ install:
   - luarocks install luacov
   - luarocks install luacov-coveralls
   - luarocks install luacheck
+  - luarocks install http
 
 script:
   - luacheck --std max+busted *.lua spec
