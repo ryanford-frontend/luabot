@@ -3,8 +3,8 @@ sudo: false
 
 env:
   - LUA="lua=5.1"
-  - LUA="lua=5.2 --compat 5.1 -i"
-  - LUA="lua=5.3 --compat 5.1 -i"
+  - LUA="lua=5.2 --compat 5.1"
+  - LUA="lua=5.3 --compat 5.1"
   - LUA="luajit=2.0"
   - LUA="luajit=2.1"
 
@@ -19,7 +19,7 @@ install:
   - luarocks install luacov-coveralls
   - luarocks install luacheck
   - luarocks install http
-  - luarocks install lua-cjson
+  - luarocks install lua-cjson 2.1.0
 
 script:
   - luacheck --std max+busted *.lua spec
