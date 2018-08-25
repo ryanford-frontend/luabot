@@ -4,24 +4,30 @@ describe('get_id', function()
    local ROOM = 'gitterhq/sandbox'
    local GITTER_TOKEN = os.getenv('GITTER_TOKEN')
 
-   it('requiring returns a table', function()
-      assert.is_true(type(get_id) == 'table')
+   it('returns a table when required', function()
+      local module_type = type(get_id)
+      local expected = 'table'
+      assert.are.equal(module_type, expected)
    end)
 
-   it('returns an id as a string', function()
+   it('returns an id as a string when called', function()
       local id = get_id(ROOM, GITTER_TOKEN)
-      assert.are_equal(type(id), 'string')
+      local id_type = type(id)
+      local expected = 'string'
+      assert.are.equal(id_type, expected)
    end)
 
-   it('fails without a room uri', function()
-      assert.has_error(function()
-         get_id(nil, GITTER_TOKEN)
-      end, 'No room uri given')
+   it('returns nil and error if no room uri', function()
+      local id, err = get_id(nil, GITTER_TOKEN)
+      local expected = 'No room uri given'
+      assert.has_no(id)
+      assert.are.equal(err, expected)
    end)
 
-   it('fails without a token', function()
-      assert.has_error(function()
-         get_id('gitterhq/sandbox')
-      end, 'No token given')
+   it('returns nil and error if no token', function()
+      local id, err = get_id('gitterhq/sandbox')
+      local expected = 'No token given'
+      assert.has_no(id)
+      assert.are.equal(err, expected)
    end)
 end)

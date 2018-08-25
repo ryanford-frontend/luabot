@@ -2,8 +2,8 @@ local request = require('http.request')
 local cjson = require('cjson')
 
 local mt = {__call = function(_, room, token)
-   assert(room, 'No room uri given')
-   assert(token, 'No token given')
+   if not room then return nil, 'No room uri given' end
+   if not token then return nil, 'No token given' end
 
    local uri = 'https://api.gitter.im/v1/rooms'
    local req_body = '{"uri":"' .. room ..'"}'
@@ -17,11 +17,11 @@ local mt = {__call = function(_, room, token)
    req:set_body(req_body)
 
    local _, stream = req:go(req_timeout)
-
-   local body = assert(stream:get_body_as_string())
+   local body, err = stream:get_body_as_string()
+   if err then return nil, err end
    body = assert(cjson.decode(body))
 
-   return(body.id)
+   return body.id
 end}
 
 return setmetatable({}, mt)
