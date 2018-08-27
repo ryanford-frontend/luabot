@@ -1,5 +1,4 @@
 local request = require('http.request')
-local cjson = require('cjson')
 
 local mt = {__call = function(_, room, token)
    if not room then return nil, 'No room uri given' end
@@ -19,9 +18,8 @@ local mt = {__call = function(_, room, token)
    local _, stream = req:go(req_timeout)
    local body, err = stream:get_body_as_string()
    if err then return nil, err end
-   body = assert(cjson.decode(body))
 
-   return body.id
+   return body
 end}
 
 return setmetatable({}, mt)
