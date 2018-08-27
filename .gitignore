@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/lua
-
+#
+# Application Secrets
+config.lua
+#
 ### Lua ###
 #
 # luarocks
