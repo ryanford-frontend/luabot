@@ -1,11 +1,14 @@
-local request = require('http.request')
+local request = require("http.request")
 
-local mt = {__call = function(_, room, token)
-   if not room then return nil, 'No room uri given' end
+local mt = {__call = function(_, room, user, token)
+   if not room then return nil, 'No room given' end
+   if not user then return nil, 'No user given' end
    if not token then return nil, 'No token given' end
 
-   local uri = 'https://api.gitter.im/v1/rooms'
-   local req_body = '{"uri":"' .. room ..'"}'
+   local room_id = room.id
+   local user_id = user[1].id
+   local uri = 'https://api.gitter.im/v1/user/' .. user_id .. '/rooms'
+   local req_body = '{"id":"' .. room_id .. '"}'
    local req_timeout = 10
 
    local req = request.new_from_uri(uri)
