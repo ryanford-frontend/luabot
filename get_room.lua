@@ -6,7 +6,6 @@ local mt = {__call = function(_, room, token)
 
    local uri = 'https://api.gitter.im/v1/rooms'
    local req_body = '{"uri":"' .. room ..'"}'
-   local req_timeout = 10
 
    local req = request.new_from_uri(uri)
    req.headers:upsert(':method', 'POST')
@@ -15,7 +14,7 @@ local mt = {__call = function(_, room, token)
    req.headers:upsert('authorization', 'Bearer ' .. token, true)
    req:set_body(req_body)
 
-   local headers, stream = req:go(req_timeout)
+   local headers, stream = req:go()
    local body, err = stream:get_body_as_string()
    if err then return nil, err end
    if headers:get(':status') ~= '200' then return nil, body end
